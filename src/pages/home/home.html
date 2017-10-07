@@ -1,0 +1,60 @@
+<ion-header>
+
+  <ion-toolbar *ngIf="doSearch">
+    <ion-searchbar placeholder="Search" (ionInput)="searchInputChanged($event)" (ionCancel)="onCancelSearch($event)" [showCancelButton]="true"></ion-searchbar>
+  </ion-toolbar>
+
+  <ion-toolbar *ngIf="!doSearch">
+    <ion-title>Crypto Tracker</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="toggleSearch()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="refreshData()">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content padding>
+  <div class="market-cap">
+    <p>
+      Total Market Cap (USD):
+      <strong>{{marketCap.total_market_cap_usd | currency:'USD':true}}</strong>
+    </p>
+  </div>
+  <div class="market-cap">
+    <p>
+      24 Hour Volume (USD):
+      <strong>{{marketCap.total_24h_volume_usd | currency:'USD':true}}</strong>
+    </p>
+  </div>
+  <div class="market-cap">
+    <p>
+      BTC % of Crypto Market:
+      <strong>{{marketCap.bitcoin_percentage_of_market_cap}}%</strong>
+    </p>
+  </div>
+
+  <p class="center" *ngIf="isLoading">
+    <ion-spinner name="dots"></ion-spinner>
+  </p>
+
+  <ion-list class="no-padding-left" *ngIf="!isLoading">
+    <ion-item *ngFor="let item of searchedCurrencies" (click)="itemTapped($event, item)">
+      <ion-avatar item-left>
+        <img src="https://files.coinmarketcap.com/static/img/coins/32x32/{{item.id}}.png" />
+      </ion-avatar>
+      <div class="left">
+        <h2>{{item.name}} ({{item.symbol}})</h2>
+        <strong>{{item.price_usd * 1 | currency:'USD':true}}</strong>
+      </div>
+      <div class="right">
+        <h4 [ngClass]="{green: item.percent_change_1h * 1 > 0, red: item.percent_change_1h * 1 < 0}">{{item.percent_change_1h}}% (1hr.)</h4>
+        <h4 [ngClass]="{green: item.percent_change_24h * 1 > 0, red: item.percent_change_24h * 1 < 0}">{{item.percent_change_24h}}% (24hr.)</h4>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

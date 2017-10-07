@@ -1,0 +1,32 @@
+page-home {
+  .market-cap {
+    p {
+      margin-top: 0px;
+    }
+    strong {
+      float: right;
+    }
+  }
+  ion-list.no-padding-left {
+    ion-item {
+      padding-left: 0px;
+    }
+  }
+  .left {
+    float: left;
+    text-align: left;
+  }
+  .right {
+    float: right;
+    text-align: right;
+  }
+  .green {
+    color: green;
+  }
+  .red {
+    color: red;
+  }
+  .center {
+    text-align: center;
+  }
+}

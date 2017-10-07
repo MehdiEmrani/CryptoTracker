@@ -1,0 +1,12 @@
+{
+  "name": "CryotoTracker",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {},
+  "proxies": [
+    {
+        "path": "/api/",
+        "proxyUrl": "https://api.coinmarketcap.com/v1/"
+    }
+  ]
+}
