@@ -3,21 +3,74 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Currency</ion-title>
+    <ion-title>{{item.name}} ({{item.symbol}})</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-avatar>
+          <img src="https://files.coinmarketcap.com/static/img/coins/32x32/{{item.id}}.png" />
+        </ion-avatar>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-left></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-right>
-        {{item.note}}
-      </div>
-    </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+<ion-content padding>
+
+  <ion-grid>
+    <ion-row align-items-start>
+      <ion-col>
+        <ion-row>
+          <h3>{{item.price_usd | currency:'USD':true:'1.2-4'}}</h3>
+        </ion-row>
+        <ion-row>
+          <h3>Ƀ{{item.price_btc | number:'1.2-8'}}</h3>
+        </ion-row>
+      </ion-col>
+      <ion-col>
+        <ion-row justify-content-end>
+          <span [ngClass]="{green: item.percent_change_1h * 1 > 0, red: item.percent_change_1h * 1 < 0}">{{item.percent_change_1h}}% (1hr.)</span>
+        </ion-row>
+        <ion-row justify-content-end>
+          <span [ngClass]="{green: item.percent_change_24h * 1 > 0, red: item.percent_change_24h * 1 < 0}">{{item.percent_change_24h}}% (24hr.)</span>
+        </ion-row>
+        <ion-row justify-content-end>
+          <span [ngClass]="{green: item.percent_change_7d * 1 > 0, red: item.percent_change_7d * 1 < 0}">{{item.percent_change_7d}}% (7d.)</span>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <ion-row align-items-center>
+      <pre>{{item | json}}</pre>
+    </ion-row>
+
+  </ion-grid>
+
+  <ion-footer>
+    <ion-grid>
+      <ion-row>
+        <span>
+          <strong>#{{item.rank}}</strong> rank in crypto currencies</span>
+      </ion-row>
+      <ion-row>
+        <span>
+          <strong>{{item.market_cap_usd | currency:'USD':true}}</strong> market cap</span>
+      </ion-row>
+      <ion-row>
+        <span>
+          <strong>{{item['24h_volume_usd'] | currency:'USD':true}}</strong> volume over 24 hours</span>
+      </ion-row>
+      <ion-row>
+        <span>
+          <strong>{{item.available_supply | currency:'USD':true}}</strong> available supply</span>
+      </ion-row>
+      <ion-row>
+        <span>
+          <strong>{{item.total_supply | currency:'USD':true}}</strong> total supply</span>
+      </ion-row>
+      <ion-row justify-content-end>
+        last updated {{item.last_updated | date:'shortTime'}}
+      </ion-row>
+    </ion-grid>
+  </ion-footer>
+
 </ion-content>

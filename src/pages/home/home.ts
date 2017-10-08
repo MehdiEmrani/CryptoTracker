@@ -1,9 +1,10 @@
+
 import { CurrencyPage } from './../currency/currency';
 import { Currency } from './../../model/currency';
 import { MarketCap } from './../../model/market-cap';
-import { DataServiceProvider } from './../../providers/data-service/data-service';
 import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { DataServiceProvider } from './../../providers/data-service/data-service';
 
 @Component({
   selector: 'page-home',

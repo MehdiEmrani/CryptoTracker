@@ -14,3 +14,21 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.left {
+  float: left;
+  text-align: left;
+}
+.right {
+  float: right;
+  text-align: right;
+}
+.green {
+  color: green;
+}
+.red {
+  color: red;
+}
+.center {
+  text-align: center;
+}
