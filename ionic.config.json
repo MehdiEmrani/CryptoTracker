@@ -10,7 +10,7 @@
     },
     {
       "path": "/chartApi/",
-      "proxyUrl": "https://www.highcharts.com/samples/data/"
+      "proxyUrl": "https://min-api.cryptocompare.com/data/"
     }
   ]
 }

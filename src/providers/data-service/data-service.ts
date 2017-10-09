@@ -1,3 +1,4 @@
+import { ChartPrice } from './../../model/chart-price';
 import { Currency } from './../../model/currency';
 import { MarketCap } from './../../model/market-cap';
 import { Injectable } from '@angular/core';
@@ -34,6 +35,23 @@ export class DataServiceProvider {
       .map(response => {
         const data = response.json();
         return data.map((item) => new Currency(item));
+      })
+      .catch(this.handleError);
+  }
+
+  // API: GET /chart
+  public getCurrencyChartData(symbol: string): Observable<ChartPrice[]> {
+    return this.http
+      // .get(`/chartApi/histoday?fsym=${symbol}&tsym=USD&allData=true`)
+      .get(`/chartApi/histoday?fsym=${symbol}&tsym=USD&limit=30`)
+      .map(response => {
+        const data = response.json();
+        if (data.Response === 'Success') {
+          return data.Data.map((item) => new ChartPrice(item));
+        }
+        else {
+          return Observable.throw(data.Message);
+        }
       })
       .catch(this.handleError);
   }

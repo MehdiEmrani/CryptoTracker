@@ -21,7 +21,7 @@ export class HomePage implements OnInit {
   constructor(
     public navCtrl: NavController,
     private dataService: DataServiceProvider) {
-
+    this.marketCap = new MarketCap();
   }
 
   getGlobalMarketCap() {

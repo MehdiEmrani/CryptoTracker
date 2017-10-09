@@ -1,3 +1,4 @@
+import { DataServiceProvider } from './../../providers/data-service/data-service';
 
 import { NavController, NavParams } from 'ionic-angular';
 import { Component, OnInit } from '@angular/core';
@@ -11,37 +12,73 @@ import { Currency } from './../../model/currency';
 export class CurrencyPage implements OnInit {
 
   item = new Currency();
-  chartData: any;
+  chart: Object;
 
-  chart = new Chart({
-    chart: {
-      type: 'line'
-    },
-    title: {
-      text: ''
-    },
-    yAxis: {
-      title: {
-        text: ''
-      }
-    },
-    credits: {
-      enabled: false
-    },
-    series: [{
-      name: 'Line 1',
-      data: [1, 3, 2, 7]
-    }, {
-      name: 'Line 2',
-      data: [2, 1, 5, 2]
-    }]
-  });
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private dataService: DataServiceProvider) {
     this.item = navParams.get('item');
   }
 
   ngOnInit(): void {
-  }
+    this.dataService.getCurrencyChartData(this.item.symbol).subscribe((data) => {
 
+      const chartArray = data.map(item => {
+        return {
+          x: item.time,
+          y: item.close
+        };
+      });
+
+      this.chart = new Chart({
+        chart: {
+          zoomType: 'x'
+        },
+        title: {
+          text: ''
+        },
+        xAxis: {
+          type: 'datetime'
+        },
+        yAxis: {
+          title: {
+            text: ''
+          }
+        },
+        legend: {
+          enabled: false
+        },
+        plotOptions: {
+          area: {
+            fillColor: {
+              linearGradient: {
+                x1: 0,
+                y1: 0,
+                x2: 0,
+                y2: 1
+              },
+              // stops: [
+              //   [0, Highcharts.getOptions().colors[0]],
+              //   [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+              // ]
+            },
+            marker: {
+              radius: 2
+            },
+            lineWidth: 1,
+            states: {
+              hover: {
+                lineWidth: 1
+              }
+            },
+            threshold: null
+          }
+        },
+        series: [{
+          type: 'area',
+          name: this.item.name,
+          data: chartArray
+        }]
+      });
+
+    });
+  }
 }
