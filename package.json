@@ -32,6 +32,9 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.0.0",
+    "@types/highcharts": "^5.0.7",
+    "angular-highcharts": "^3.4.8",
+    "highcharts": "^6.0.1",
     "typescript": "2.3.4"
   },
   "description": "An Ionic project"

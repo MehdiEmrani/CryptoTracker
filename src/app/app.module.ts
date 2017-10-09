@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 import { NgForm, FormsModule } from '@angular/forms';
+import { ChartModule } from 'angular-highcharts';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -22,6 +23,7 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
     BrowserModule,
     HttpModule,
     FormsModule,
+    ChartModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],

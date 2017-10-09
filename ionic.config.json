@@ -7,6 +7,10 @@
     {
         "path": "/api/",
         "proxyUrl": "https://api.coinmarketcap.com/v1/"
+    },
+    {
+      "path": "/chartApi/",
+      "proxyUrl": "https://www.highcharts.com/samples/data/"
     }
   ]
 }

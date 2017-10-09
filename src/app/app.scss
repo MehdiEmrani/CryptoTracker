@@ -1,6 +1,4 @@
 // http://ionicframework.com/docs/theming/
-
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -19,16 +17,24 @@
   float: left;
   text-align: left;
 }
+
 .right {
   float: right;
   text-align: right;
 }
+
 .green {
   color: green;
 }
+
 .red {
   color: red;
 }
+
 .center {
   text-align: center;
+}
+
+.max-width {
+  width: 100%;
 }
