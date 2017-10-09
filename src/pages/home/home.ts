@@ -14,7 +14,7 @@ export class HomePage implements OnInit {
 
   doSearch: boolean = false;
   isLoading: boolean = false;
-  marketCap = new MarketCap();
+  marketCap: MarketCap;
   currencies: Currency[];
   searchedCurrencies: Currency[];
 
