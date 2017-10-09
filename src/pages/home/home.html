@@ -52,8 +52,8 @@
         <strong>{{item.price_usd | currency:'USD':true:'1.2-2'}}</strong>
       </div>
       <div class="right">
-        <h4 [ngClass]="{green: item.percent_change_1h * 1 > 0, red: item.percent_change_1h * 1 < 0}">{{item.percent_change_1h}}% (1hr.)</h4>
-        <h4 [ngClass]="{green: item.percent_change_24h * 1 > 0, red: item.percent_change_24h * 1 < 0}">{{item.percent_change_24h}}% (24hr.)</h4>
+        <h4 [class.green]="item.percent_change_1h * 1 > 0"  [class.red]="item.percent_change_1h * 1 < 0">{{item.percent_change_1h}}% (1hr.)</h4>
+        <h4 [class.green]="item.percent_change_24h * 1 > 0" [class.red]="item.percent_change_24h * 1 < 0">{{item.percent_change_24h}}% (24hr.)</h4>
       </div>
     </ion-item>
   </ion-list>

@@ -28,13 +28,13 @@
       </ion-col>
       <ion-col>
         <ion-row justify-content-end>
-          <span [ngClass]="{green: item.percent_change_1h * 1 > 0, red: item.percent_change_1h * 1 < 0}">{{item.percent_change_1h}}% (1hr.)</span>
+          <span [class.green]="item.percent_change_1h * 1 > 0" [class.red]="item.percent_change_1h * 1 < 0">{{item.percent_change_1h}}% (1hr.)</span>
         </ion-row>
         <ion-row justify-content-end>
-          <span [ngClass]="{green: item.percent_change_24h * 1 > 0, red: item.percent_change_24h * 1 < 0}">{{item.percent_change_24h}}% (24hr.)</span>
+          <span [class.green]="item.percent_change_24h * 1 > 0" [class.red]="item.percent_change_24h * 1 < 0">{{item.percent_change_24h}}% (24hr.)</span>
         </ion-row>
         <ion-row justify-content-end>
-          <span [ngClass]="{green: item.percent_change_7d * 1 > 0, red: item.percent_change_7d * 1 < 0}">{{item.percent_change_7d}}% (7d.)</span>
+          <span [class.green]="item.percent_change_7d * 1 > 0" [class.red]="item.percent_change_7d * 1 < 0">{{item.percent_change_7d}}% (7d.)</span>
         </ion-row>
       </ion-col>
     </ion-row>
