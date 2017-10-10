@@ -42,8 +42,7 @@ export class DataServiceProvider {
   // API: GET /chart
   public getCurrencyChartData(symbol: string): Observable<ChartPrice[]> {
     return this.http
-      // .get(`/chartApi/histoday?fsym=${symbol}&tsym=USD&allData=true`)
-      .get(`/chartApi/histoday?fsym=${symbol}&tsym=USD&limit=30`)
+      .get(`/chartApi/histoday?fsym=${symbol}&tsym=USD&allData=true`)
       .map(response => {
         const data = response.json();
         if (data.Response === 'Success') {
